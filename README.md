@@ -8,5 +8,6 @@
         * pip install flask-script
         * pip install flask-json
         * pip install flask-cors
+        * pip install flask-sqlalchemy
 
 
