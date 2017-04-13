@@ -1,4 +1,4 @@
-#coding=utf8
+# coding=utf8
 from flask import jsonify, request, g, abort, url_for, current_app
 from . import api
 from flask import json, make_response
