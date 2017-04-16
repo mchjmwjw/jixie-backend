@@ -18,17 +18,16 @@ def save():
     db.session.add(material)
     db.session.commit()
     # 返回所有数据
-    materials = Material.query.all()
-    data2 = json.dumps(materials, default=serialize_instance)
-    rst = make_response(data2)
-    rst.headers['Access-Control-Allow-Origin'] = '*'
-    return rst
+    return get()
 
 
 @api.route('/materials/get/', methods=['GET'])
 def get():
     materials = Material.query.all()
-    data2 = json.dumps(materials[0].to_json())  # , default=serialize_instance)
+    ms = []
+    for item in materials:
+        ms.append(item.to_json())
+    data2 = json.dumps(ms)  # , default=serialize_instance)
     rst = make_response(data2)
     rst.headers['Access-Control-Allow-Origin'] = '*'
     return rst

@@ -31,6 +31,7 @@ class Material(db.Model):
             'm_kind': self.m_kind,
             'm_remark': self.m_remark
         }
+        return mjson
 
     def __repr__(self):
         return '<Material %r>' % self.m_name
