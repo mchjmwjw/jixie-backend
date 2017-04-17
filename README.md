@@ -9,5 +9,9 @@
         * pip install flask-json
         * pip install flask-cors
         * pip install flask-sqlalchemy
+        * pip install flask-migrate
+            * python hello.py db init
+            * python hello.py db migrate -m "initial migration"
+            * python hello.py db upgrade
 
 
