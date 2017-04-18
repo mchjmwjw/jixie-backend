@@ -1,7 +1,7 @@
 # coding=utf8
 from . import api
 from flask import request, json, make_response, jsonify
-from ..models import Material, db
+from ..models import Material, db, Kind
 
 
 def serialize_instance(obj):
@@ -32,3 +32,16 @@ def get():
     rst.headers['Access-Control-Allow-Origin'] = '*'
     return rst
 
+
+@api.route('/kindtree/save/', methods=['POST'])
+def savekind():
+    data = request.get_json()
+    kind = Kind(data)
+    db.session.add(kind)
+    db.session.commit()
+    return 'success'
+
+
+@api.route('/kindtree/get/', methods=['GET'])
+def gettree():
+    kinds = Kind.query.all()
