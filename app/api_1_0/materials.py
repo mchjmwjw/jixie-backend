@@ -14,7 +14,6 @@ def serialize_instance(obj):
 def save():
     data = request.get_json()
     material = Material(data)
-    # for(k, v) in data.items():
     db.session.add(material)
     db.session.commit()
     # 返回所有数据
@@ -36,9 +35,10 @@ def get():
 @api.route('/kindtree/save/', methods=['POST'])
 def savekind():
     data = request.get_json()
-    kind = Kind(data)
-    db.session.add(kind)
-    db.session.commit()
+    for v in data['mdata']:
+        kind = Kind(v)
+        db.session.add(kind)
+        db.session.commit()
     return 'success'
 
 
