@@ -2,6 +2,7 @@
 from . import api
 from flask import request, json, make_response, jsonify
 from ..models import Material, db, Kind
+from flask_cors import *
 
 
 def serialize_instance(obj):
@@ -33,13 +34,14 @@ def get():
 
 
 @api.route('/kindtree/save/', methods=['POST'])
+@cross_origin()
 def savekind():
     data = request.get_json()
     for v in data['mdata']:
         kind = Kind(v)
         db.session.add(kind)
         db.session.commit()
-    return 'success'
+    return jsonify(res='success')
 
 
 @api.route('/kindtree/get/', methods=['GET'])

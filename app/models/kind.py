@@ -8,10 +8,9 @@ class Kind(db.Model):
     k_name = db.Column(db.String(500))
 
     def __init__(self, obj):
-        mobj = obj['mdata']
-        self.phid = mobj['phid']
-        self.pid = mobj['pid']
-        self.k_name = mobj['k_name']
+        self.phid = obj['phid']
+        self.pid = obj['pid']
+        self.k_name = obj['k_name']
 
     def to_json(self):
         mjson = {
