@@ -47,3 +47,10 @@ def savekind():
 @api.route('/kindtree/get/', methods=['GET'])
 def gettree():
     kinds = Kind.query.all()
+    ms = []
+    for item in kinds:
+        ms.append(item.to_json())
+    data2 = json.dumps(ms)  # , default=serialize_instance)
+    rst = make_response(data2)
+    rst.headers['Access-Control-Allow-Origin'] = '*'
+    return rst
