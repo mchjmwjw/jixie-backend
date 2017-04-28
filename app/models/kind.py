@@ -2,10 +2,11 @@ from .. import db
 
 
 class Kind(db.Model):
-    __tablename__ = 'kind'
+    __tablename__ = 'kinds'
     phid = db.Column(db.Integer, primary_key=True)
     pid = db.Column(db.Integer)
     k_name = db.Column(db.String(500))
+    materials = db.relationship('Material', backref='kind')
 
     def __init__(self, obj):
         self.phid = obj['phid']

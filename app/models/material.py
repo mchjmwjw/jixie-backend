@@ -10,6 +10,7 @@ class Material(db.Model):
     m_amount = db.Column(db.Integer)
     m_kind = db.Column(db.String(255))
     m_remark = db.Column(db.String(1000))
+    kind_id = db.Column(db.Integer, db.ForeignKey('kinds.phid'))
 
     def __init__(self, obj):
         mobj = obj['mdata']
@@ -20,6 +21,7 @@ class Material(db.Model):
         self.m_unit = mobj['m_unit']
         self.m_kind = mobj['m_kind']
         self.m_remark = mobj['m_remark']
+        self.kind_id = obj["kind_id"]
 
     def to_json(self):
         mjson = {
@@ -29,7 +31,8 @@ class Material(db.Model):
             'm_name': self.m_name,
             'm_unit': self.m_unit,
             'm_kind': self.m_kind,
-            'm_remark': self.m_remark
+            'm_remark': self.m_remark,
+            'kind_id': self.kind_id
         }
         return mjson
 
