@@ -1,3 +1,4 @@
+* 说明
 * needed:
     * 安装virtualenv
     * 激活环境 venv\Scripts\active
