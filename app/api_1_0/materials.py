@@ -23,7 +23,10 @@ def save():
 
 @api.route('/materials/get/', methods=['GET'])
 def get():
-    materials = Material.query.all()
+    materials = Material.query.outerjoin(Kind, Material.kind_id==Kind.phid).all()
+    # materials = db.session.query(Parent.id.label('pid'), Child.id.label('cid'), Child.name).\
+    # outerjoin(Child, Parent.id == Child.parent_id).all()
+    # materials = Material.query.all()
     ms = []
     for item in materials:
         ms.append(item.to_json())

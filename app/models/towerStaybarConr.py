@@ -1,17 +1,16 @@
 from .. import db
 
 
-class Material(db.Model):
-    __tablename__ = 'materials'
+class TowerStaybarConr(db.Model):
+    __tablename__ = 'tower_staybar_conr'
     phid = db.Column(db.Integer, primary_key=True)
-    m_no = db.Column(db.String(255), unique=True)
-    m_name = db.Column(db.String(1000))
-    m_unit = db.Column(db.String(50))
-    m_amount = db.Column(db.Integer)
-    m_kind = db.Column(db.String(255))
-    m_remark = db.Column(db.String(1000))
-    kind_id = db.Column(db.Integer, db.ForeignKey('kinds.phid'))
-    # kind_name = db.Column(db.String(1000))
+    c_no = db.Column(db.String(255), unique=True)
+    o_time = db.Column(db.String(255))
+    d_time = db.Column(db.String(255))
+    amount = db.Column(db.Integer)
+    mapper = db.Column(db.String(255))
+    client = db.Column(db.String(255))
+    order_no = db.Column(db.String(255))
 
     def __init__(self, obj):
         mobj = obj['mdata']
@@ -22,8 +21,7 @@ class Material(db.Model):
         self.m_unit = mobj['m_unit']
         self.m_kind = mobj['m_kind']
         self.m_remark = mobj['m_remark']
-        self.kind_id = mobj["kind_id"]
-        # self.kind_name = mobj["kind_name"]
+        self.kind_id = obj["kind_id"]
 
     def to_json(self):
         mjson = {
@@ -34,8 +32,7 @@ class Material(db.Model):
             'm_unit': self.m_unit,
             'm_kind': self.m_kind,
             'm_remark': self.m_remark,
-            'kind_id': self.kind_id,
-            'kind_name': self.kind.k_name
+            'kind_id': self.kind_id
         }
         return mjson
 

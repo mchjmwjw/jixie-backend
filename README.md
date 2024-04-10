@@ -2,6 +2,7 @@
 * needed:
     * 安装virtualenv
     * 激活环境 venv\Scripts\active
+        * source venv\bin\active
     * 安装flask   pip install flask
     * 安装包:
         * pip install blueprint
@@ -19,5 +20,7 @@
         * pip freeze > requirements.txt
      * 安装 requirements.txt 中的包
         * pip install -r requirements.txt
+        
+* 运行: python main.py runserver
 
 

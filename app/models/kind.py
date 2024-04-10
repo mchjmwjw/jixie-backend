@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from .. import db
 
 
@@ -6,7 +8,7 @@ class Kind(db.Model):
     phid = db.Column(db.Integer, primary_key=True)
     pid = db.Column(db.Integer)
     k_name = db.Column(db.String(500))
-    materials = db.relationship('Material', backref='kind')
+    materials = db.relationship('Material', backref='kind') # 用于反向查询
 
     def __init__(self, obj):
         self.phid = obj['phid']
